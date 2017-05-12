@@ -1,11 +1,13 @@
 package com.example.joginderpal.edittextanimation;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
 
@@ -23,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     RelativeLayout main;
     Button btn;
 
-    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    @TargetApi(Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,30 +36,26 @@ public class MainActivity extends AppCompatActivity {
         main= (RelativeLayout) findViewById(R.id.relative_main);
         btn= (Button) findViewById(R.id.Login_btn);
         username.setHint("Username");
-        password.setHint("Passoword");
+        password.setHint("Password");
         email.setHint("Email");
         username.setText("Username");
         email.setText("Email");
         password.setText("Password");
 
-        Glide.with(MainActivity.this).load("http://www.walldevil.com/wallpapers/a59/wallpapers-mac-aurora-apple-macintosh-pink-hdwallpapers-technology-galaxy-wallpaper-images-custom-blue-includes-iphone.jpg").bitmapTransform(new BlurTransformation(MainActivity.this,100))
+        Glide.with(MainActivity.this).load("http://www.wallpapereast.com/static/images/1321922_STpOMHj.jpg").bitmapTransform(new BlurTransformation(MainActivity.this,100))
                 .into(new SimpleTarget<GlideDrawable>() {
                     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
                     @Override
                     public void onResourceReady(GlideDrawable resource, GlideAnimation<? super GlideDrawable> glideAnimation) {
 
                          main.setBackground(resource);
-
                     }
                 });
 
 
-
-
-
-        username.setBackgroundRel(R.color.username);
-        password.setBackgroundRel(R.color.password);
-        email.setBackgroundRel(R.color.email);
+        username.setBackgroundRel(0);
+        email.setBackgroundRel(0);
+        password.setBackgroundRel(0);
         Drawable email_icon=getResources().getDrawable(R.drawable.email,null);
         Drawable pass_icon=getResources().getDrawable(R.drawable.password,null);
         Drawable okay=getResources().getDrawable(R.drawable.okay,null);
@@ -73,6 +71,19 @@ public class MainActivity extends AppCompatActivity {
         email.setOkay(okay);
         password.setOkay(okay);
      //   btn.setBackgroundColor(R.color.username);
+
+
+       btn.setOnClickListener(new View.OnClickListener() {
+           @Override
+           public void onClick(View v) {
+
+               Intent i=new Intent(MainActivity.this,secondActivity.class);
+               i.putExtra("username",username.getText().toString());
+               startActivity(i);
+
+
+           }
+       });
 
     }
 

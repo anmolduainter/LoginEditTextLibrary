@@ -209,9 +209,21 @@ public class textEdit extends RelativeLayout {
         profile.setBackground(res);
     }
 
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public void setBackgroundRel(int color){
         rel_text.setBackgroundColor(color);
     }
+
+    public void setAplharel(float f){
+        rel_text.setAlpha(f);
+    }
+
+    public void settransparentrel(){
+
+        rel_text.setBackgroundColor(0);
+
+    }
+
 
     public void setHintColor(int color){
         editText.setHintTextColor(Color.WHITE);
